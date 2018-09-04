@@ -21,7 +21,7 @@ func init() {
 		ConfigFileName = "conf.json"
 	}
 
-	ConfigPath = filepath.Dir(os.Args[0]) + PathSeparator + "conf.json"
+	ConfigPath = filepath.Dir(os.Args[0]) + PathSeparator + ConfigFileName
 
 	// 生成config配置文件
 	logrus.Info("初始化配置文件:", ConfigPath)
