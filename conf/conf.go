@@ -13,8 +13,9 @@ import (
 
 func init() {
 	// 根据操作系统选择配置文件
-	switch runtime.GOOS {
-	case "windows":
+	arch := runtime.GOOS
+	switch {
+	case arch == "windows":
 		ConfigFileName = "conf-windows.json"
 	default:
 		ConfigFileName = "conf.json"
