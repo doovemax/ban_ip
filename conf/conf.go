@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/golang/go/src/runtime"
+	"runtime"
 
 	"github.com/sirupsen/logrus"
 )

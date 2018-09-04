@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"./module"
 	"github.com/doovemax/ban_ip/conf"
+	"github.com/doovemax/ban_ip/module"
 )
 
 func main() {
@@ -14,4 +14,5 @@ func main() {
 	go module.Tail(conf.DefaultConfig.NginxFilePath, module.TailConfig, module.LogLine)
 	go module.LogParase(conf.DefaultConfig.LogFormat, module.LogLine)
 	select {}
+
 }
