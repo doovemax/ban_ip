@@ -19,3 +19,4 @@ main
 .idea
 .vscode
 /conf.json
+/conf-windows.json
