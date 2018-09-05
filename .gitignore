@@ -15,6 +15,6 @@
 
 .idea/inspectionProfiles/
 .idea/workspace.xml
-#main
-#.idea
+main
+.idea
 .vscode
