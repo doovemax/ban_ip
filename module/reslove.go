@@ -12,7 +12,17 @@ func LogParase(logformat string, input <-chan string, output chan<- *gonx.Entry)
 	for line = range input {
 		entry, err := p.ParseString(line)
 		if err != nil {
-			logrus.Warning(err)
+			logrus.Warn(err)
+			continue
+		}
+		BodyBytesSent, err := entry.Field("body_bytes_sent")
+		if err != nil {
+			logrus.Warn(err)
+			continue
+		}
+		// 返回字节大小为0,跳过
+		if BodyBytesSent == "0" {
+			// fmt.Println(BodyBytesSent)
 			continue
 		}
 		//如果IP在白名单中,跳过

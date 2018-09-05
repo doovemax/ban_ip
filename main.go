@@ -18,6 +18,7 @@ func main() {
 	go module.Tail(conf.DefaultConfig.NginxFilePath, module.TailConfig, module.LogLine)
 	go module.LogParase(conf.DefaultConfig.LogFormat, module.LogLine, module.IPEntry)
 	go module.Count(module.IPEntry)
+	go module.IpAddFilter()
 	select {}
 
 }
