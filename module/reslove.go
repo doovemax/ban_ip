@@ -7,24 +7,16 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func LogParase(logformat string, trans <-chan string) error {
+func LogParase(logformat string, trans <-chan string) (err error) {
 	var line string
-	select {
-	case a, ok := <-trans:
-		if ok {
-			line = a
-		} else {
-			logrus.Fatal("log to gonx chan close")
-		}
-	}
-
 	p := gonx.NewParser(logformat)
-	entry, err := p.ParseString(line)
-	if err != nil {
-		logrus.Warning(err)
-
+	for line = range trans {
+		entry, err := p.ParseString(line)
+		if err != nil {
+			logrus.Warning(err)
+			return
+		}
+		fmt.Println(entry.Fields())
 	}
-	fmt.Println(entry.Fields())
-
-	return nil
+	return
 }
