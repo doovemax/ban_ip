@@ -33,8 +33,10 @@ func init() {
 }
 
 type Config struct {
-	NginxFilePath string `json:"nginx_file_path"`
-	LogFormat     string `json:"log_format"`
+	NginxFilePath  string   `json:"nginx_file_path"`
+	LogFormat      string   `json:"log_format"`
+	WhiteIPList    []string `json:"white_ip_list"`
+	IPToBlackCount int      `json:"ip_to_black_count"`
 }
 
 var (
