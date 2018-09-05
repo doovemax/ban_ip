@@ -1,8 +1,0 @@
-{
-  "nginx_file_path": "/mnt/c/Users/super/Desktop/TMP/walian_api_access.log",
-  "ip_to_black_count":50,
-  "log_format":"$http_x_forwarded_for $remote_addr - $remote_user [$time_local] \"$request_method $request_uri $server_protocol\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_host\" $upstream_addr $upstream_response_time $request_time",
-  "white_ip_list":[
-    "47.96.155.5"
-  ]
-}
