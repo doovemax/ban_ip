@@ -26,7 +26,8 @@ func Tail(configfile string, config tail.Config, trans chan<- string) error {
 		return err
 	}
 	for line := range t.Lines {
-		logrus.Debug("[", line.Text, "]")
+		logrus.Info("[", line.Text, "]")
+
 		trans <- line.Text
 	}
 	return nil

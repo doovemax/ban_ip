@@ -20,3 +20,6 @@ main
 .vscode
 /conf.json
 /conf-windows.json
+/go_build_linux_linux
+go_build_linux_linux
+/go_build_main_go.exe

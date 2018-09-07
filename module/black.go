@@ -1,6 +1,7 @@
 package module
 
 import (
+	"fmt"
 	"github.com/satyrius/gonx"
 	"github.com/sirupsen/logrus"
 	"strconv"
@@ -18,6 +19,7 @@ var (
 
 func Count(inEntry <-chan *gonx.Entry) (err error) {
 	for entry := range inEntry {
+		fmt.Println(entry)
 		Uri, err := entry.Field("request_uri")
 		if err != nil {
 			logrus.Warn(err)
@@ -44,9 +46,9 @@ func Count(inEntry <-chan *gonx.Entry) (err error) {
 			continue
 		}
 		aTimeMin := strconv.Itoa(aTimeFormat.Year()) + strconv.Itoa(int(aTimeFormat.Month())) + strconv.Itoa(aTimeFormat.Day()) + strconv.Itoa(aTimeFormat.Hour()) + strconv.Itoa(aTimeFormat.Minute())
-
+		iPcountRWMutex.Lock()
 		IPcount[Uri+":"+IP+":"+aTimeMin]++
-
+		iPcountRWMutex.Unlock()
 		//f,_:=jsoniter.MarshalIndent(IPcount,"","    ")
 		//fmt.Println(string(f))
 		//os.Exit(0)

@@ -39,7 +39,7 @@ func LogParase(logformat string, input <-chan string, output chan<- *gonx.Entry)
 			}
 
 		}
-		//logrus.Info(entry)
+		logrus.Info(entry)
 		output <- entry
 		logrus.Debug(entry)
 

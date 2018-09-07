@@ -3,14 +3,16 @@ package module
 import (
 	"fmt"
 	"github.com/doovemax/ban_ip/conf"
-	"time"
+	"github.com/sirupsen/logrus"
 )
 
 func IpAddFilter() (err error) {
-	time.Sleep(time.Second * 30)
-	for urlip, count := range IPcount {
+	logrus.Println(IPcount)
+	iPcountRWMutex.RLock()
+	defer iPcountRWMutex.RUnlock()
+	for urliptime, count := range IPcount {
 		if count > conf.DefaultConfig.IPToBlackCount {
-			fmt.Println(urlip, count)
+			fmt.Println(urliptime, count)
 		}
 	}
 	return
