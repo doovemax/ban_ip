@@ -26,7 +26,7 @@ func main() {
 	go module.Count(module.IPEntry)
 	logrus.Println("进入filter")
 	time.Sleep(time.Second * 3)
-	go module.IpAddFilter()
+	module.CronWork()
 	select {}
 
 }

@@ -1,9 +1,8 @@
 package module
 
 import (
-	"github.com/sirupsen/logrus"
-
 	"github.com/hpcloud/tail"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -26,9 +25,10 @@ func Tail(configfile string, config tail.Config, trans chan<- string) error {
 		return err
 	}
 	for line := range t.Lines {
-		logrus.Info("[", line.Text, "]")
+		// logrus.Info(":)--")
 
 		trans <- line.Text
 	}
+	logrus.Fatal("tail out")
 	return nil
 }

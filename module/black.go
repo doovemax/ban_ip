@@ -1,7 +1,6 @@
 package module
 
 import (
-	"fmt"
 	"github.com/satyrius/gonx"
 	"github.com/sirupsen/logrus"
 	"strconv"
@@ -19,7 +18,6 @@ var (
 
 func Count(inEntry <-chan *gonx.Entry) (err error) {
 	for entry := range inEntry {
-		fmt.Println(entry)
 		Uri, err := entry.Field("request_uri")
 		if err != nil {
 			logrus.Warn(err)

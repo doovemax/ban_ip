@@ -26,12 +26,15 @@ func LogParase(logformat string, input <-chan string, output chan<- *gonx.Entry)
 			continue
 		}
 		//如果IP在白名单中,跳过
+		IP, err := entry.Field("http_x_forwarded_for")
+		if err != nil {
+			logrus.Warn(err)
+			continue
+		}
+		if IP == "-" {
+			continue
+		}
 		if FilterBool {
-			IP, err := entry.Field("http_x_forwarded_for")
-			if err != nil {
-				logrus.Warn(err)
-				continue
-			}
 			if IPListMap[IP] == true {
 				//logrus.Info(IP ," in white list")
 				logrus.Debug(IP, " in white list")
@@ -39,7 +42,7 @@ func LogParase(logformat string, input <-chan string, output chan<- *gonx.Entry)
 			}
 
 		}
-		logrus.Info(entry)
+		// logrus.Info(entry)
 		output <- entry
 		logrus.Debug(entry)
 
