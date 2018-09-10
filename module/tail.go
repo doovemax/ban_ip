@@ -3,11 +3,12 @@ package module
 import (
 	"github.com/hpcloud/tail"
 	"github.com/sirupsen/logrus"
+	"os"
 )
 
 var (
 	TailConfig tail.Config = tail.Config{
-		Location:    nil,
+		Location:    &tail.SeekInfo{Whence: os.SEEK_END},
 		ReOpen:      true,
 		MustExist:   true,
 		Poll:        false,
@@ -22,6 +23,7 @@ var (
 func Tail(configfile string, config tail.Config, trans chan<- string) error {
 	t, err := tail.TailFile(configfile, config)
 	if err != nil {
+		logrus.Fatal(err)
 		return err
 	}
 	for line := range t.Lines {
